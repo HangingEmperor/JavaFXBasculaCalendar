@@ -7,7 +7,6 @@ se almacenara su informacion en un log.txt donde pondra la fecha
 y hora de cuando se hizo el registro y el peso a ambas unidades
 al archivo.
 
-<img src="https://github.com/HangingEmperor/JavaFXBasculaCalendar/blob/master/capturaPantalla.png?raw=true">
-
-Falta añadir una pestaña o menu (MenuBar) para poder ver todo el
-historial almacenado en el archivo.
+<img src="https://github.com/HangingEmperor/JavaFXBasculaCalendar/blob/master/img/capturaPantallaBase.png?raw=true">
+<img src="https://github.com/HangingEmperor/JavaFXBasculaCalendar/blob/master/img/capturaPantallaBaseUso.png?raw=true">
+<img src="https://github.com/HangingEmperor/JavaFXBasculaCalendar/blob/master/img/capturaPantallaMensaje.png?raw=true">
