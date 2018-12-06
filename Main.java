@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sample;
 
 import javafx.application.Application;
@@ -59,41 +54,41 @@ public class Main extends Application {
         Button btnGuardar = new Button();
         btnGuardar.setText("Guardar");
         btnGuardar.setOnAction(new EventHandler<ActionEvent>() {
-               @Override
-               public void handle(ActionEvent event) {
-                   String nameFile = "log.txt";
-                   File file = new File("log.txt");
-                   if (!file.exists()) {
-                       try {
-                           file.createNewFile();
-                       } catch (IOException ex) {
-                           Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                       }
-                   }
-                   try {
-                       Date ahora = new Date();
+                                   @Override
+                                   public void handle(ActionEvent event) {
+                                       String nameFile = "log.txt";
+                                       File file = new File("log.txt");
+                                       if (!file.exists()) {
+                                           try {
+                                               file.createNewFile();
+                                           } catch (IOException ex) {
+                                               Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                                           }
+                                       }
+                                       try {
+                                           Date ahora = new Date();
 
-                       SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+                                           SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 
-                       String aux = "";
-                       String oldData = "";
-                       FileReader hoja = new FileReader(file);
-                       BufferedReader lee = new BufferedReader(hoja);
-                       while ((aux = lee.readLine()) != null) {
-                           oldData += aux + "\n";
-                       }
-                       lee.close();
+                                           String aux = "";
+                                           String oldData = "";
+                                           FileReader hoja = new FileReader(file);
+                                           BufferedReader lee = new BufferedReader(hoja);
+                                           while ((aux = lee.readLine()) != null) {
+                                               oldData += aux + "\n";
+                                           }
+                                           lee.close();
 
-                       FileWriter archivo = new FileWriter(file);
-                       archivo.append(oldData);
-                       archivo.append(formateador.format(ahora));
-                       archivo.append(" | KG:" + labelKG.getText() + ",LB:" + labelLB.getText());
-                       archivo.close();
-                   } catch (IOException ex) {
-                       System.out.println("Hubo un error");
-                   }
-               }
-           }
+                                           FileWriter archivo = new FileWriter(file);
+                                           archivo.append(oldData);
+                                           archivo.append("Fecha: " + formateador.format(ahora));
+                                           archivo.append(" | KG: " + labelKG.getText() + " , LB: " + labelLB.getText());
+                                           archivo.close();
+                                       } catch (IOException ex) {
+                                           System.out.println("Hubo un error");
+                                       }
+                                   }
+                               }
         );
 
         Slider slKG = new Slider();
@@ -102,12 +97,12 @@ public class Main extends Application {
         slKG.setMax(200);
         slKG.setValue(0);
         slKG.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                labelKG.setText((float) slKG.getValue() + " kg");
-                labelLB.setText((float) (slKG.getValue() * 2.20462) + " lb");
-                }
-            }
+                                             @Override
+                                             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                                                 labelKG.setText((float) slKG.getValue() + " kg");
+                                                 labelLB.setText((float) (slKG.getValue() * 2.20462) + " lb");
+                                             }
+                                         }
         );
 
         Slider slLB = new Slider();
@@ -116,34 +111,34 @@ public class Main extends Application {
         slLB.setMax(500);
         slLB.setValue(0);
         slLB.valueProperty().addListener(new ChangeListener<Number>() {
-             @Override
-             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue
-             ) {
-                 labelLB.setText((float) slLB.getValue() + " lb");
-                 labelKG.setText((float) (slLB.getValue() * 0.453592) + " kg");
-             }
-         }
+                                             @Override
+                                             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue
+                                             ) {
+                                                 labelLB.setText((float) slLB.getValue() + " lb");
+                                                 labelKG.setText((float) (slLB.getValue() * 0.453592) + " kg");
+                                             }
+                                         }
         );
 
         TextField textKG = new TextField();
 
         textKG.setOnKeyPressed(new EventHandler<KeyEvent>() {
-               @Override
-               public void handle(KeyEvent event
-               ) {
-                   if (event.getCode() == KeyCode.ENTER) {
-                       if (textKG.getText().matches("[a-zA-Z]+")
-                               || textKG.getText().matches("[0-9]+[a-zA-Z]+")
-                               || textKG.getText().matches("[a-zA-Z]+[0-9]+")) {
-                           JOptionPane.showMessageDialog(null, "Solo se admiten digitos.");
-                           textKG.setText("");
-                       } else {
-                           slKG.setValue(Double.parseDouble(textKG.getText()));
-                           labelKG.setText(textKG.getText() + " kg");
-                       }
-                   }
-               }
-           }
+                                   @Override
+                                   public void handle(KeyEvent event
+                                   ) {
+                                       if (event.getCode() == KeyCode.ENTER) {
+                                           if (textKG.getText().matches("[a-zA-Z]+")
+                                                   || textKG.getText().matches("[0-9]+[a-zA-Z]+")
+                                                   || textKG.getText().matches("[a-zA-Z]+[0-9]+")) {
+                                               JOptionPane.showMessageDialog(null, "Solo se admiten digitos.");
+                                               textKG.setText("");
+                                           } else {
+                                               slKG.setValue(Double.parseDouble(textKG.getText()));
+                                               labelKG.setText(textKG.getText() + " kg");
+                                           }
+                                       }
+                                   }
+                               }
         );
 
         TextField textLB = new TextField();
@@ -168,13 +163,45 @@ public class Main extends Application {
                 }
         );
 
+        Button verResultados = new Button();
+        verResultados.setText("Ver resultados anteriores");
+        verResultados.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String nameFile = "log.txt";
+                File file = new File("log.txt");
+                if (!file.exists()) {
+                    try {
+                        file.createNewFile();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                String aux = "";
+                String oldData = "";
+
+                try {
+                    FileReader hoja = new FileReader(file);
+                    BufferedReader lee = new BufferedReader(hoja);
+                    while ((aux = lee.readLine()) != null) {
+                        oldData += aux + "\n";
+                    }
+                    lee.close();
+                    JOptionPane.showMessageDialog(null, oldData);
+                } catch (IOException io) {
+                    JOptionPane.showConfirmDialog(null, "No se encontro el archivo");
+                }
+
+            }
+        });
+
         FlowPane flow = new FlowPane(Orientation.VERTICAL);
 
         flow.setVgap(20);
         flow.setPadding(
                 new Insets(30));
         flow.getChildren().addAll(labelTitle, labelKG, slKG, textKG, labelLB,
-                slLB, textLB, btnGuardar);
+                slLB, textLB, btnGuardar, verResultados);
 
         Scene scene = new Scene(flow, 200, 500);
 
